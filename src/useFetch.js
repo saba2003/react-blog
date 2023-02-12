@@ -30,6 +30,7 @@ const useFetch = (url) => {
             })
 
         return () => abortCont.abort()
+        //only uses useEffect when url is changed
     }, [url])
 
     return {data, isPending, error}

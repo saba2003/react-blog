@@ -9,7 +9,9 @@ const Create = () => {
     const timeAndSpace = useHistory()
 
     const handleSubmit = (e) => {
+        //prevents the page from refreshing after pushing button
         e.preventDefault();
+        //creating an object
         const blog = {title, body, author}
 
         setIsPending(true)
@@ -20,6 +22,7 @@ const Create = () => {
             body: JSON.stringify(blog)
         }).then(() => {
             setIsPending(false)
+            //redirecting to other pages
             //timeAndSpace.go(-1)
             timeAndSpace.push('/')
         })
@@ -28,24 +31,25 @@ const Create = () => {
     return (
         <div className="create">
             <h2>Add a new Blog</h2>
+
             <form onSubmit={handleSubmit}>
                 <label>Blog title:</label>
                 <input 
                     type="text" 
                     required
                     value={title}
-                    onChange={(e) => setTitle(e.target.value)}
+                    onChange={(event) => setTitle(event.target.value)}
                 />
                 <label>Blog body:</label>
                 <textarea
                     required 
                     value={body}
-                    onChange={(e) => setBody(e.target.value)}
+                    onChange={(event) => setBody(event.target.value)}
                 ></textarea>
                 <label>Blog author</label>
                 <select
                     value={author}
-                    onChange={(e) => setAuthor(e.target.value)}
+                    onChange={(event) => setAuthor(event.target.value)}
                 >
                     <option value="mario">mario</option>
                     <option value="yoshi">yoshi</option>

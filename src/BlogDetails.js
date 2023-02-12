@@ -8,6 +8,8 @@ const BlogDetails = () => {
     const timeAndSpace = useHistory()
 
     const hanldeClick = () => {
+        //initialize the json dummy server and using the data from the created Data/db.json
+        //npx json-server --watch Data/db.json --port 8000
         fetch('http://localhost:8000/blogs/' + blog.id, {
             method: 'DELETE'
         }).then(() => {
@@ -17,6 +19,7 @@ const BlogDetails = () => {
 
     return (
         <div className="blog-details">
+            {/* this acts as a return, for example: if isPending=true, it shows Loading */}
             { isPending && <div>Loading...</div>}
             { error && <div>{error}</div>}
             { blog && (
