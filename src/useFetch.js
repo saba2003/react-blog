@@ -2,12 +2,14 @@ import { useState, useEffect } from "react"
 
 const useFetch = (url) => {
     const [data, setData] = useState(null)
+    //showing that the data is being loaded
     const [isPending, setIsPending] = useState(true)
     const [error, setError] = useState(null)
 
     useEffect(() => {
+// used to stop fetching when clicked to other route
         const abortCont = new AbortController()
-
+        //associating the abort controller with fetch
         fetch(url, { signal: abortCont.signal })
             .then(response => {
                 if(!response.ok){
@@ -20,10 +22,10 @@ const useFetch = (url) => {
                 setIsPending(false)
                 setError(null)
             })
-            .catch((e) => {
-                if(e.name !== 'AbortError'){
+            .catch((error) => {
+                if(error.name !== 'AbortError'){
                     setIsPending(false)
-                    setError(e.message) 
+                    setError(error.message) 
                 }
             })
 

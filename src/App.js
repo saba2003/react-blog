@@ -10,6 +10,7 @@ function App() {
       <div className="App">
         <NavBar />
         <div className="content">
+          {/* switch allows us to see only one route on screen */}
           <Switch>
             <Route exact path="/">
               <Home />
@@ -17,6 +18,7 @@ function App() {
             <Route path="/create">
               <Create />
             </Route>
+            {/* id is a parameter, we define a param with : */}
             <Route path="/blogs/:id">
               <BlogDetails />
             </Route>
