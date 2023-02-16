@@ -1,6 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
 
 /* base styles */
+:root {
+  --primary: #f1356d;
+  --secondary: white;
+}
 * {
   margin: 0;
   font-family: "Quicksand";
@@ -8,7 +12,7 @@
   text-decoration: none;
 }
 .navbar {
-  padding: 20px;
+  padding: 8px;
   display: flex;
   align-items: center;
   max-width: 600px;
@@ -22,7 +26,6 @@
   margin-left: auto;
 }
 .navbar a {
-  margin-left: 16px;
   text-decoration: none;
   padding: 6px;
 }
@@ -98,4 +101,50 @@
   padding: 8px;
   border-radius: 8px;
   cursor: pointer;
+}
+
+/* help layout */
+.help-layout nav {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin: 30px 0;
+}
+.help-layout nav a{
+  padding: 10px;
+  border: 2px solid white;
+  border-radius: 4px;
+  text-decoration: none;
+}
+.help-layout nav a:hover{
+  border-color: var(--primary);
+}
+.help-layout nav a.active {
+  background: var(--primary);
+}
+
+/* faq */
+.faq .question {
+  background: rgba(0,0,0,0.2);
+  padding: 5px 20px;
+  border-radius: 4px;
+  margin: 20px 0;
+}
+
+/* contact form */
+form {
+  margin-top: 30px;
+}
+form input, form label span, form textarea {
+  display: block;
+}
+form input, form textarea {
+  margin-bottom: 30px;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  width: 300px;
+}
+form label span {
+  margin-bottom: 10px;
 }

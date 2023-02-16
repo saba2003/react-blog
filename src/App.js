@@ -1,35 +1,48 @@
-import NavBar from './Navbar';
-import Home from './Home';
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
-import Create from './Create';
-import BlogDetails from './BlogDetails';
+import {
+  Route,
+  RouterProvider,
+  createBrowserRouter,
+  createRoutesFromElements
+} from 'react-router-dom';
+
+//Layouts
+import RootLayout from './layouts/RootLayout';
+import HelpLayout from './layouts/HelpLayout';
+
+//pages
+import Home from './pages/Home';
+import Create from './pages/Create';
+import Faq from './pages/help/Faq';
+import Contact from './pages/help/Contact';
 import NotFound from './NotFound';
+
+//other
+import BlogDetails from './BlogDetails';
+
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path="/" element={<RootLayout />} >
+
+      <Route index element={<Home />} />
+      <Route path="create" element={<Create />} />
+      <Route path="help" element={<HelpLayout />}>
+        <Route path="faq" element={<Faq />}/>
+        <Route path="contact" element={<Contact />} />
+      </Route>
+
+      {/* id is a parameter, we define a param with : */}
+      <Route path="blogs/:id" element={<BlogDetails />} />
+      <Route path="*" element = {<NotFound />} />
+
+    </Route>
+  )
+)
 
 function App() {
   return (
-    <Router>
-      <div className="App">
-        <NavBar />
-        <div className="content">
-          {/* switch allows us to see only one route on screen */}
-          <Switch>
-            <Route exact path="/">
-              <Home />
-            </Route>
-            <Route path="/create">
-              <Create />
-            </Route>
-            {/* id is a parameter, we define a param with : */}
-            <Route path="/blogs/:id">
-              <BlogDetails />
-            </Route>
-            <Route path="*">
-              <NotFound />
-            </Route>
-          </Switch>
-        </div>
-      </div>
-    </Router>
+    <div className="App">
+        <RouterProvider router={router} />
+    </div>
   );
 }
 

@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { /* useHistory */ } from "react-router-dom";
 
 const Create = () => {
     const [title, setTitle] = useState('')
     const [body, setBody] = useState('')
     const [author, setAuthor] = useState('mario')
     const [isPending, setIsPending] = useState(false)
-    const timeAndSpace = useHistory()
+    //const timeAndSpace = useHistory()
 
     const handleSubmit = (e) => {
         //prevents the page from refreshing after pushing button
@@ -24,7 +24,7 @@ const Create = () => {
             setIsPending(false)
             //redirecting to other pages
             //timeAndSpace.go(-1)
-            timeAndSpace.push('/')
+            //timeAndSpace.push('/')
         })
     }
 

@@ -1,7 +1,7 @@
-import BlogList from "./BlogList";
-import useFetch from "./useFetch";
+import BlogList from "../BlogList";
+import useFetch from "../useFetch";
 
-const Home = () => {
+export const Home = () => {
     //here with data: blogs we rename data and call it blogs
     const {data: blogs, isPending, error} = useFetch('http://localhost:8000/blogs')
 

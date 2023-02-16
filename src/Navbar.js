@@ -1,15 +1,15 @@
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
-const NavBar = () => {
+export default function Navbar() {
     return (
         <nav className="navbar">
-            <h1>The Dojo Blog</h1>
+            <NavLink to="/"><h1>The Dojo Blog</h1></NavLink>
+            
             <div className="links">
-                <Link to="/">Home</Link>
-                <Link to="/create">New Blog</Link>
+                <NavLink to="/">Home</NavLink>
+                <NavLink to="create">New Blog</NavLink>
+                <NavLink to="help">Help</NavLink>
             </div>
         </nav>
     );
 }
- 
-export default NavBar;
