@@ -11,39 +11,56 @@ import HelpLayout from './layouts/HelpLayout';
 
 //pages
 import Home from './pages/Home';
-import Create from './pages/Create';
+import Blogs from './pages/blogs/Blogs';
+import Create, { createAction } from './pages/blogs/Create';
 import Faq from './pages/help/Faq';
-import Contact from './pages/help/Contact';
-import NotFound from './NotFound';
+import Contact, { contactAction } from './pages/help/Contact';
+import NotFound from './pages/NotFound';
 
 //other
-import BlogDetails from './BlogDetails';
+import BlogDetails, { blogDetailsLoader } from './pages/blogs/BlogDetails';
+import { blogsLoader } from './pages/blogs/BlogList';
+import BlogError from './pages/blogs/BlogError';
+
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<RootLayout />} >
+    
+    <Route path="/" element={<RootLayout />}>
+      <Route index element={<Home />}></Route>
 
-      <Route index element={<Home />} />
-      <Route path="create" element={<Create />} />
+      <Route 
+        path="blogs" 
+        element={<Blogs />} 
+        loader={blogsLoader} 
+        errorElement={<BlogError />}
+      />
+
+      <Route 
+        path="blogs/:id" 
+        element={<BlogDetails />} 
+        loader={blogDetailsLoader}
+        errorElement={<BlogError />}
+      />
+
+      <Route path="create" element={<Create />} action={createAction}/>
+      
+
       <Route path="help" element={<HelpLayout />}>
         <Route path="faq" element={<Faq />}/>
-        <Route path="contact" element={<Contact />} />
+        <Route path="contact" element={<Contact />} action={contactAction}/>
       </Route>
 
-      {/* id is a parameter, we define a param with : */}
-      <Route path="blogs/:id" element={<BlogDetails />} />
       <Route path="*" element = {<NotFound />} />
 
     </Route>
   )
 )
 
-function App() {
+export default function App() {
   return (
     <div className="App">
         <RouterProvider router={router} />
     </div>
   );
 }
-
-export default App;
